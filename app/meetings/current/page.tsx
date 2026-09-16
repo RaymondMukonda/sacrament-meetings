@@ -8,7 +8,11 @@ export default async function CurrentMeetingPage() {
 
   const isoDate = sunday.toISOString().split('T')[0];
 
-  const res = await fetch(`http://localhost:3000/api/meetings?date=${isoDate}`, { cache: 'no-store' });
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : process.env.NEXT_PUBLIC_BASE_URL;
+
+  const res = await fetch(new URL(`/api/meetings?date=${isoDate}`, baseUrl), { cache: 'no-store' });
   const meetings = await res.json();
 
   if (meetings.length > 0) {
