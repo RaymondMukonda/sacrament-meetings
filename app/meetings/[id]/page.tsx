@@ -10,11 +10,12 @@ async function getMeeting(id: string) {
   return res.json();
 }
 
-export default async function MeetingDetailPage({ params }: { params: { id: string } }) {
-  const meeting = await getMeeting(params.id);
+export default async function MeetingDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const meeting = await getMeeting(id);
 
   if (!meeting) {
-    return <p className="text-red-500">Meeting not found.</p>;
+    return <p className="text-red-500">Meeting not found.</p>; d4 
   }
 
   return <MeetingDetail meeting={meeting} />;
