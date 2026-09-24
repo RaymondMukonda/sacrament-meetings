@@ -9,6 +9,7 @@ export default function NavLinks() {
   const links = [
     { href: '/', label: 'Home' },
     { href: '/meetings', label: 'Meetings' },
+    { href: '/meetings/create', label: 'Create Meeting' },
     { href: '/meetings/current', label: 'Current Meeting' },
   ];
 
@@ -18,7 +19,7 @@ export default function NavLinks() {
         <Link
           key={link.href}
           href={link.href}
-          className={pathname === link.href ? 'text-[var(--color-primary)] font-bold' : 'text-gray-700'}
+          className={pathname === link.href ? 'text-var(--color-primary) font-bold' : 'text-gray-700'}
         >
           {link.label}
         </Link>
